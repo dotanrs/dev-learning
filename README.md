@@ -21,6 +21,20 @@ npm run build     # production build into dist/
 npm run preview   # serve the production build
 ```
 
+## Deploy (GitHub Pages)
+
+Pushing to `main` builds the site and publishes it to GitHub Pages via
+`.github/workflows/deploy.yml`. One-time setup: in the repo, go to
+**Settings → Pages → Build and deployment → Source** and select
+**GitHub Actions**.
+
+The site is served from the project subpath, so the production build sets
+Vite's `base` to `/dev-learning/` (see `vite.config.js`); local dev/preview
+stay at the root path. Routing uses `HashRouter`, so deep links and refreshes
+work on Pages without extra 404 handling.
+
+Live URL: https://dotanrs.github.io/dev-learning/
+
 ## What's inside
 
 9 chapters · 74 topics · 267 flashcards · 292 self-test questions.
