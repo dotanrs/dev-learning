@@ -9,9 +9,12 @@ function Card({ front, back }) {
       <div className="fc-tag">Flashcard</div>
       <div className="fc-front">{front}</div>
       {open ? (
-        <div className="fc-back">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{back}</ReactMarkdown>
-        </div>
+        <>
+          <div className="fc-back">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{back}</ReactMarkdown>
+          </div>
+          <div className="fc-hint">Click to hide ▴</div>
+        </>
       ) : (
         <div className="fc-hint">Click to reveal ▾</div>
       )}

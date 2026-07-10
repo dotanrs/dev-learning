@@ -13,14 +13,15 @@ function Mcq({ item, index }) {
       <div className="quiz-options">
         {item.options.map((opt, i) => {
           let cls = 'quiz-opt'
+          if (done && i === picked) cls += ' selected'
           if (done && i === item.answer) cls += ' correct'
           else if (done && i === picked) cls += ' wrong'
           return (
             <button
               key={i}
               className={cls}
-              disabled={done}
-              onClick={() => setPicked(i)}
+              // Clicking the current pick clears it; clicking another switches.
+              onClick={() => setPicked((p) => (p === i ? null : i))}
             >
               <span className="letter">{LETTERS[i]}</span>
               <span>{opt}</span>
@@ -28,6 +29,9 @@ function Mcq({ item, index }) {
           )
         })}
       </div>
+      {done && (
+        <div className="quiz-hint">Click your answer again to un-select, or pick another.</div>
+      )}
       {done && item.explanation && (
         <div className="quiz-answer">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.explanation}</ReactMarkdown>
@@ -42,9 +46,10 @@ function Open({ item, index }) {
   return (
     <div className="quiz-item">
       <div className="quiz-q"><span className="qn">Q{index + 1}.</span>{item.question}</div>
-      {!show ? (
-        <button className="reveal-btn" onClick={() => setShow(true)}>Show answer ▾</button>
-      ) : (
+      <button className="reveal-btn" onClick={() => setShow((s) => !s)}>
+        {show ? 'Hide answer ▴' : 'Show answer ▾'}
+      </button>
+      {show && (
         <div className="quiz-answer">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.answer}</ReactMarkdown>
         </div>
