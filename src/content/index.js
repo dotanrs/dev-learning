@@ -7,8 +7,9 @@ import ch6 from './ch6-concurrency.js'
 import ch7 from './ch7-networking.js'
 import ch8 from './ch8-python.js'
 import ch9 from './ch9-low-level.js'
+import ch10 from './ch10-math.js'
 
-const raw = [ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8, ch9]
+const raw = [ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8, ch9, ch10]
 
 export const chapters = raw.map((ch, i) => ({ ...ch, num: i + 1 }))
 
