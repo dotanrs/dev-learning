@@ -38,8 +38,11 @@ Any loop or recursion that divides the problem in half each step (binary search,
 Write the recurrence, then solve it — often with the **Master Theorem**:
 
 > For T(n) = a·T(n/b) + f(n):
+>
 > - If f(n) = O(n^(log_b a − ε)) → T(n) = Θ(n^(log_b a))
+>
 > - If f(n) = Θ(n^(log_b a)) → T(n) = Θ(n^(log_b a) · log n)
+>
 > - If f(n) = Ω(n^(log_b a + ε)) → T(n) = Θ(f(n))
 
 *Merge sort*: T(n) = 2T(n/2) + O(n) → a=2, b=2, log_b(a)=1, f(n)=n → case 2 → **O(n log n)**
