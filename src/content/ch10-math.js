@@ -132,7 +132,9 @@ Sum the maximum nodes across all levels 0 through h:
 Invert Claim 1. If n ≤ 2^(h+1) − 1, then:
 
 > 2^(h+1) ≥ n + 1
+>
 > h + 1 ≥ log₂(n + 1)
+>
 > **h ≥ log₂(n + 1) − 1**
 
 This is a *lower bound*: no binary tree can be shorter than ~log₂ n. It is impossible to pack n nodes into fewer than logarithmically many levels, because each level at most **doubles** the capacity.
