@@ -201,6 +201,10 @@ a:hover { text-decoration: underline; }
 }
 .quiz-q { font-weight: 600; margin-bottom: 10px; }
 .quiz-q .qn { color: var(--accent); margin-right: 8px; }
+.quiz-q > :first-child { margin-top: 0; }
+.quiz-q p { margin: 0 0 8px; }
+.quiz-q p:last-child { margin-bottom: 0; }
+.quiz-q pre, .quiz-q code { font-weight: 400; }
 .quiz-options { display: grid; gap: 8px; }
 .quiz-opt {
   text-align: left;

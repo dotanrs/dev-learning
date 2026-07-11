@@ -37,7 +37,7 @@ Live URL: https://dotanrs.github.io/dev-learning/
 
 ## What's inside
 
-13 chapters · 92 topics · 334 flashcards · 341 self-test questions.
+13 chapters · 92 topics · 334 flashcards · 347 self-test questions.
 
 1. **Data Structures** — arrays, hash maps, trees/graphs, BFS/DFS, binary search, DP, heaps, intervals, sliding window, two pointers (brain-teaser focused)
 2. **CS Fundamentals** — how to calculate time complexity + complexity riddles (hash tables, trees, tries, graphs, heaps, union-find)
