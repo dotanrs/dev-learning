@@ -37,7 +37,7 @@ Live URL: https://dotanrs.github.io/dev-learning/
 
 ## What's inside
 
-12 chapters · 85 topics · 311 flashcards · 325 self-test questions.
+13 chapters · 92 topics · 334 flashcards · 341 self-test questions.
 
 1. **Data Structures** — arrays, hash maps, trees/graphs, BFS/DFS, binary search, DP, heaps, intervals, sliding window, two pointers (brain-teaser focused)
 2. **CS Fundamentals** — how to calculate time complexity + complexity riddles (hash tables, trees, tries, graphs, heaps, union-find)
@@ -49,8 +49,9 @@ Live URL: https://dotanrs.github.io/dev-learning/
 8. **Python** — GIL, asyncio, generators, decorators, context managers, typing, dataclasses, GC, multiprocessing
 9. **Low-Level & Systems at Scale** — GPUs, CUDA, AI infra, HPC, autonomous vehicles, networking/Mellanox, distributed AI training, data-center software
 10. **Relevant Math** — logarithms & exponentials, tree-height proofs (balanced ⇒ log n, sorting ⇒ n log n), summations & series (arithmetic/geometric/harmonic), combinatorics & probability
-11. **Statistics & Probability Theory** — the Master Theorem (recurrences), common distributions (Bernoulli, Binomial, Geometric, Poisson, Normal, Exponential), key theorems (LLN, CLT, Bayes, Markov/Chebyshev)
+11. **Statistics & Probability Theory** — the Master Theorem (recurrences), common distributions (Bernoulli, Binomial, Geometric, Poisson, Normal, Exponential), conditional probability, key theorems (LLN, CLT, Bayes, Markov/Chebyshev)
 12. **Logic & Foundational Theorems** — propositional/predicate logic, Gödel's incompleteness theorems, computability & undecidability (halting problem, Rice's theorem), other landmarks (Cantor, Russell, P vs NP, Cook–Levin)
+13. **LeetCode Patterns** — arrays & hashing, two pointers & sliding window, binary search, linked lists, trees & traversals, graphs & dynamic programming (worked solutions with complexity analysis)
 
 ### Features
 

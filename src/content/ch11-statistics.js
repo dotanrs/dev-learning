@@ -7,19 +7,43 @@ export default {
       title: "The Master Theorem",
       body: `## Solving Divide-and-Conquer Recurrences
 
-The **Master Theorem** is a cookbook for solving recurrences of the form:
+### First, what problem are we even solving?
+
+A **divide-and-conquer** algorithm solves a problem by (1) splitting it into smaller subproblems, (2) solving each recursively, and (3) combining the results. Merge sort is the classic example: split the array in half, sort each half, merge them back.
+
+To find the running time of such an algorithm we write a **recurrence relation** — an equation that expresses the cost on an input of size *n* in terms of the cost on smaller inputs. For merge sort:
+
+> T(n) = 2·T(n/2) + n
+
+Read it as: "sorting n items costs *two* recursive sorts of n/2 items, **plus** n work to merge them." The problem is that T appears on both sides — you can't just read the answer off. The **Master Theorem** is a plug-and-chug formula that solves this whole family of recurrences without unrolling them by hand.
+
+### The general form and what each symbol means
 
 > **T(n) = a · T(n / b) + f(n)**
 
-where **a ≥ 1** (number of subproblems), **b > 1** (factor the input shrinks by each level), and **f(n)** is the work done *outside* the recursive calls (the "combine" or "divide" cost).
+| Symbol | Meaning | Merge sort |
+|--------|---------|-----------|
+| **T(n)** | total cost on input of size n (what we're solving for) | ? |
+| **a ≥ 1** | how many subproblems each call spawns | 2 |
+| **b > 1** | the factor by which input size shrinks per level | 2 (halved) |
+| **f(n)** | work done *outside* the recursion — the divide + combine cost | n (the merge) |
 
-### The One Comparison That Decides Everything
+### Where the answer comes from: the recursion tree
 
-Everything hinges on comparing f(n) against the **watershed function**:
+Picture the calls as a tree. The root does f(n) work and spawns *a* children on inputs of size n/b; each of those does f(n/b) work and spawns *a* more, and so on until the inputs are size 1.
+
+- **Depth of the tree:** you divide by b each level until you reach size 1, which takes **log_b(n)** levels.
+- **Leaves at the bottom:** each level multiplies the count by a, so after log_b(n) levels there are a^(log_b n) = **n^(log_b a)** leaves.
+
+So the *total* work is a tug-of-war between the **combine work piling up near the root** (governed by f(n)) and the **work done by the huge number of leaves** (governed by n^(log_b a)). The Master Theorem is just: **whichever side grows faster wins.**
+
+### The one comparison that decides everything
+
+Compare your f(n) against the **watershed function** — the leaf count:
 
 > n^(log_b a)
 
-This exponent, log_b(a), is how fast the *number of leaves* in the recursion tree grows. Intuitively you're asking: is most of the work done at the **leaves** (the recursion), at the **root** (the combine step), or **spread evenly** across all levels?
+That exponent, log_b(a), *is* the growth rate of the number of leaves. The question is simply: is most of the work done at the **leaves** (recursion dominates), at the **root** (the combine step dominates), or **spread evenly** across all log_b(n) levels?
 
 ### The Three Cases
 
@@ -99,6 +123,28 @@ The extended master theorem handles it: with f(n) = Θ(n · log¹ n), the result
       body: `## The Distributions You Actually Meet
 
 A **distribution** describes how probability is spread over the possible values of a random variable. A handful cover most real modeling and interview questions.
+
+### Notation first (so the formulas make sense)
+
+Every symbol used below, defined once:
+
+| Symbol | Read as | Meaning |
+|--------|---------|---------|
+| **X** | "the random variable" | the uncertain quantity (e.g. "number of heads") |
+| **P(X = k)** | "probability that X equals k" | the chance the outcome is exactly k |
+| **PMF** | probability *mass* function | P(X = k) for a **discrete** X (countable outcomes) |
+| **PDF**, f(x) | probability *density* function | for a **continuous** X; area under it over a range gives the probability |
+| **Mean / E[X]** | expected value | the long-run average outcome |
+| **Variance / Var(X)** | — | how spread out the outcomes are; **σ² = Var(X)** |
+| **σ** (sigma) | standard deviation | √Variance — spread in the same units as X |
+| **μ** (mu) | the mean | same as E[X] |
+| **p** | probability of success | for a single trial (0 ≤ p ≤ 1) |
+| **λ** (lambda) | rate | average number of events per unit (Poisson/Exponential) |
+| **n!** | "n factorial" | n × (n−1) × … × 1 |
+| **C(n, k)** | "n choose k" | number of ways to pick k items from n = n! / (k!·(n−k)!) |
+| **e** | Euler's number | ≈ 2.71828, the base of natural growth/decay |
+
+With that vocabulary, each distribution below is just a rule for P(X = k) (discrete) or f(x) (continuous), plus its mean and variance.
 
 ### Discrete Distributions
 
@@ -185,6 +231,95 @@ If events *arrive* as a Poisson process at rate λ (count per interval), then th
         {
           question: "A test scores are Normal with μ = 100, σ = 15. Roughly what fraction of scores fall between 70 and 130?",
           answer: `70 and 130 are exactly μ ± 2σ (100 ± 30). By the 68–95–99.7 rule, about **95%** of scores fall in this range.`
+        }
+      ]
+    },
+    {
+      id: "conditional-probability",
+      title: "Conditional Probability",
+      body: `## Probability, Once You Know Something
+
+**Conditional probability** is the chance of an event **given that** another event has already happened. It's how you update your beliefs as evidence arrives.
+
+### The definition
+
+> **P(A | B) = P(A ∩ B) / P(B)**
+
+Read "P(A | B)" as **"the probability of A *given* B."** In words: restrict the world to the cases where B happened, then ask what fraction of *those* also have A. The symbol **A ∩ B** ("A and B") is the event that *both* occur. (We require P(B) > 0 — you can't condition on something impossible.)
+
+**Concrete example:** roll a fair die. Let A = "rolled a 2", B = "rolled an even number".
+- P(A) = 1/6 on its own.
+- But P(A | B) = P(rolled 2 *and* even) / P(even) = (1/6) / (1/2) = **1/3**. Knowing it's even shrinks the world to {2, 4, 6}, so a 2 is now 1-in-3.
+
+### The multiplication rule (same equation, rearranged)
+
+> **P(A ∩ B) = P(A | B) · P(B) = P(B | A) · P(A)**
+
+Useful for chaining dependent events: P(draw two aces) = P(1st ace) · P(2nd ace | 1st ace) = (4/52) · (3/51).
+
+### Independence
+
+A and B are **independent** when knowing one tells you nothing about the other:
+
+> **P(A | B) = P(A)**,  equivalently  **P(A ∩ B) = P(A) · P(B)**
+
+Two coin flips are independent; drawing cards *without replacement* is not (the first draw changes the second's odds). **Don't confuse independent with mutually exclusive** — mutually exclusive events (can't both happen) are actually *highly dependent*: if one occurs, the other definitely didn't.
+
+### Law of Total Probability
+
+To find P(A) when it's easier to reason case-by-case, split the world into disjoint cases B₁, B₂, … that cover everything:
+
+> **P(A) = P(A | B₁)·P(B₁) + P(A | B₂)·P(B₂) + …**
+
+**Example:** two factories make bulbs. Factory 1 makes 60% (2% defective); Factory 2 makes 40% (5% defective). Overall defect rate = 0.02·0.6 + 0.05·0.4 = 0.012 + 0.020 = **3.2%**.
+
+### Bayes' Theorem — flipping the condition
+
+Often you know P(evidence | cause) but want P(cause | evidence). Bayes inverts it:
+
+> **P(A | B) = P(B | A) · P(A) / P(B)**
+
+and P(B) usually comes from the law of total probability. This is the heart of medical-test interpretation, spam filtering, and Bayesian inference — worked in full (with the base-rate trap) in the next chapter, *Key Theorems*.
+
+### The mental model
+
+Conditioning = **zooming into a slice of the sample space and renormalizing**. P(A | B) asks: "within the B-slice, how much is also A?" Everything else — the multiplication rule, independence, Bayes — is algebra on that one idea.
+`,
+      quizTitle: "Conditioning practice",
+      flashcards: [
+        {
+          front: "Define P(A | B) and describe it in words.",
+          back: `**P(A | B) = P(A ∩ B) / P(B)** — the probability of A *given* B. Restrict the world to cases where B occurred, then ask what fraction of those also have A. Requires P(B) > 0.`
+        },
+        {
+          front: "What does it mean for events A and B to be independent?",
+          back: `Knowing one gives no information about the other: **P(A | B) = P(A)**, equivalently **P(A ∩ B) = P(A)·P(B)**. Note this is *different* from mutually exclusive — mutually exclusive events are strongly dependent (if one happens the other can't).`
+        },
+        {
+          front: "State the multiplication rule and give a use.",
+          back: `**P(A ∩ B) = P(A | B)·P(B) = P(B | A)·P(A).** Chains dependent events, e.g. P(two aces in a row) = (4/52)·(3/51) — the second factor is conditioned on the first ace already being drawn.`
+        },
+        {
+          front: "State the law of total probability.",
+          back: `If B₁, B₂, … are disjoint cases covering the whole sample space, then **P(A) = Σ P(A | Bᵢ)·P(Bᵢ)**. It lets you compute an overall probability by weighting case-by-case conditional probabilities, and supplies the denominator P(B) in Bayes' theorem.`
+        }
+      ],
+      quiz: [
+        {
+          question: "A family has two children. Given that at least one is a girl, what is the probability that both are girls? (Assume each child is independently a boy or girl with probability 1/2.)",
+          options: ["1/2", "1/3", "1/4", "2/3"],
+          answer: 1,
+          explanation: `The equally-likely outcomes are {BB, BG, GB, GG}. Conditioning on "at least one girl" removes BB, leaving {BG, GB, GG} — three cases. Only GG has both girls, so P(both girls | at least one girl) = **1/3**. (A famous illustration that conditioning reshapes the sample space.)`
+        },
+        {
+          question: "You draw 2 cards from a standard 52-card deck without replacement. What is P(both are hearts)?",
+          answer: `Use the multiplication rule with dependence: P(1st heart) · P(2nd heart | 1st heart) = (13/52) · (12/51) = (1/4) · (12/51) = 12/204 = **1/17 ≈ 5.9%**.
+
+Because we draw *without replacement*, the second probability is conditioned on the first heart already being gone (12 hearts left out of 51 cards).`
+        },
+        {
+          question: "Two factories supply chips: A makes 70% (1% defective), B makes 30% (4% defective). What is the overall probability a random chip is defective?",
+          answer: `Law of total probability: P(defective) = P(def | A)·P(A) + P(def | B)·P(B) = 0.01·0.70 + 0.04·0.30 = 0.007 + 0.012 = **0.019 = 1.9%**.`
         }
       ]
     },

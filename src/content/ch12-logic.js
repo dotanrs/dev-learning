@@ -32,6 +32,7 @@ A **proposition** is a statement that is either true or false. Connectives combi
 ### De Morgan's Laws
 
 > ¬(P ∧ Q) = ¬P ∨ ¬Q
+>
 > ¬(P ∨ Q) = ¬P ∧ ¬Q
 
 Negation flips AND ↔ OR. This is exactly how you simplify boolean conditions in code: \`!(a && b)\` becomes \`!a || !b\`.
@@ -46,6 +47,7 @@ Predicates add variables and quantifiers to talk about whole domains:
 **Negating quantifiers flips them** (a De Morgan for quantifiers):
 
 > ¬(∀x P(x)) ≡ ∃x ¬P(x)
+>
 > ¬(∃x P(x)) ≡ ∀x ¬P(x)
 
 "Not everyone passed" = "someone failed." **Order matters:** ∀x ∃y (everyone has *some* y) is weaker than ∃y ∀x (one y works for *everyone*).
