@@ -4,12 +4,22 @@ import remarkGfm from 'remark-gfm'
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
 
+// Questions may contain Markdown (bold, inline code, ~~~ code fences).
+function Question({ index, children }) {
+  return (
+    <div className="quiz-q">
+      <span className="qn">Q{index + 1}.</span>
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>{children}</ReactMarkdown>
+    </div>
+  )
+}
+
 function Mcq({ item, index }) {
   const [picked, setPicked] = useState(null)
   const done = picked !== null
   return (
     <div className="quiz-item">
-      <div className="quiz-q"><span className="qn">Q{index + 1}.</span>{item.question}</div>
+      <Question index={index}>{item.question}</Question>
       <div className="quiz-options">
         {item.options.map((opt, i) => {
           let cls = 'quiz-opt'
@@ -45,7 +55,7 @@ function Open({ item, index }) {
   const [show, setShow] = useState(false)
   return (
     <div className="quiz-item">
-      <div className="quiz-q"><span className="qn">Q{index + 1}.</span>{item.question}</div>
+      <Question index={index}>{item.question}</Question>
       <button className="reveal-btn" onClick={() => setShow((s) => !s)}>
         {show ? 'Hide answer ▴' : 'Show answer ▾'}
       </button>
