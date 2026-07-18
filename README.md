@@ -37,7 +37,7 @@ Live URL: https://dotanrs.github.io/dev-learning/
 
 ## What's inside
 
-13 chapters · 92 topics · 334 flashcards · 347 self-test questions.
+14 chapters · 100 topics · 358 flashcards · 379 self-test questions.
 
 1. **Data Structures** — arrays, hash maps, trees/graphs, BFS/DFS, binary search, DP, heaps, intervals, sliding window, two pointers (brain-teaser focused)
 2. **CS Fundamentals** — how to calculate time complexity + complexity riddles (hash tables, trees, tries, graphs, heaps, union-find)
@@ -52,6 +52,7 @@ Live URL: https://dotanrs.github.io/dev-learning/
 11. **Statistics & Probability Theory** — the Master Theorem (recurrences), common distributions (Bernoulli, Binomial, Geometric, Poisson, Normal, Exponential), conditional probability, key theorems (LLN, CLT, Bayes, Markov/Chebyshev)
 12. **Logic & Foundational Theorems** — propositional/predicate logic, Gödel's incompleteness theorems, computability & undecidability (halting problem, Rice's theorem), other landmarks (Cantor, Russell, P vs NP, Cook–Levin)
 13. **LeetCode Patterns** — arrays & hashing, two pointers & sliding window, binary search, linked lists, trees & traversals, graphs & dynamic programming (worked solutions with complexity analysis)
+14. **C++ for Python Developers** — compilation & build model, static typing & `auto`, values/references/pointers, memory/RAII/smart pointers, STL containers & algorithms, classes & the Rule of Five, templates, move semantics (with Python contrasts and per-topic exercises)
 
 ### Features
 
