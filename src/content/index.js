@@ -11,8 +11,9 @@ import ch10 from './ch10-math.js'
 import ch11 from './ch11-statistics.js'
 import ch12 from './ch12-logic.js'
 import ch13 from './ch13-leetcode.js'
+import ch14 from './ch14-cpp.js'
 
-const raw = [ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8, ch9, ch10, ch11, ch12, ch13]
+const raw = [ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8, ch9, ch10, ch11, ch12, ch13, ch14]
 
 export const chapters = raw.map((ch, i) => ({ ...ch, num: i + 1 }))
 
