@@ -4,12 +4,14 @@ import { chapters } from '../content/index.js'
 export default function Home() {
   return (
     <div className="content">
-      <h1>⚡ Engineer Crash Course</h1>
+      <h1>🗾 Spoken Japanese Crash Course</h1>
       <p style={{ color: 'var(--text-dim)', fontSize: 17 }}>
-        A fast, navigable knowledge base to sharpen your software-engineering
-        fundamentals. Jump into any chapter — nothing here needs to be read in
-        order. Look for <strong>🃏 flashcards</strong> and{' '}
-        <strong>🧠 test-yourself</strong> questions to check your recall.
+        Enough Japanese to explain yourself as a visitor — no writing system
+        required. How words are built, how tenses work, the phrases that get you
+        fed, moved and helped, and the quirks nobody warns you about. Jump into
+        any chapter; nothing needs to be read in order. Look for{' '}
+        <strong>🃏 flashcards</strong> and <strong>🧠 test-yourself</strong>{' '}
+        questions to check your recall.
       </p>
       <div className="home-grid">
         {chapters.map((ch) => {

@@ -1,14 +1,17 @@
-# ⚡ Engineer Crash Course
+# 🗾 Spoken Japanese Crash Course
 
-A fast, navigable React knowledge base for sharpening software-engineering
-fundamentals — built for interview prep and quick refreshers. Nothing needs to
-be read in order: use the sidebar (with live filter) or the home grid to jump
-anywhere.
+A fast, navigable React knowledge base for learning **spoken** Japanese as a visitor —
+enough to explain basic things, order food, get around and ask for help. **No writing
+system**: everything is taught in romaji, with kana/kanji shown alongside only so you can
+recognise signs and menus.
+
+Nothing needs to be read in order: use the sidebar (with live filter) or the home grid to
+jump anywhere.
 
 ## Run it
 
 ```bash
-npm install     # already done
+npm install
 npm run dev     # start the dev server (prints a localhost URL)
 ```
 
@@ -33,32 +36,41 @@ Vite's `base` to `/dev-learning/` (see `vite.config.js`); local dev/preview
 stay at the root path. Routing uses `HashRouter`, so deep links and refreshes
 work on Pages without extra 404 handling.
 
-Live URL: https://dotanrs.github.io/dev-learning/
-
 ## What's inside
 
-14 chapters · 100 topics · 358 flashcards · 379 self-test questions.
+7 chapters · 23 topics · 130 flashcards · 70 self-test questions.
 
-1. **Data Structures** — arrays, hash maps, trees/graphs, BFS/DFS, binary search, DP, heaps, intervals, sliding window, two pointers (brain-teaser focused)
-2. **CS Fundamentals** — how to calculate time complexity + complexity riddles (hash tables, trees, tries, graphs, heaps, union-find)
-3. **Algorithms** — sorting, graph algorithms, topological sort, Dijkstra, DP, greedy, recursion vs iteration
-4. **System Design** — URL shortener, chat, metrics, distributed cache, job scheduler, file storage, recommendations, event pipeline (with "how to manage it" flashcards)
-5. **Operating Systems** — threads vs processes, locks, deadlocks, scheduling, virtual memory, paging, mmap, file systems, networking basics
-6. **Concurrency** — mutexes, semaphores, condition variables, producer-consumer, thread pools, lock-free, atomics, memory ordering (with code)
-7. **Networking** — TCP/UDP, HTTP/2, HTTP/3, TLS, DNS, connection lifecycle, keep-alive, load balancing (FAQ style)
-8. **Python** — GIL, asyncio, generators, decorators, context managers, typing, dataclasses, GC, multiprocessing
-9. **Low-Level & Systems at Scale** — GPUs, CUDA, AI infra, HPC, autonomous vehicles, networking/Mellanox, distributed AI training, data-center software
-10. **Relevant Math** — logarithms & exponentials, tree-height proofs (balanced ⇒ log n, sorting ⇒ n log n), summations & series (arithmetic/geometric/harmonic), combinatorics & probability
-11. **Statistics & Probability Theory** — the Master Theorem (recurrences), common distributions (Bernoulli, Binomial, Geometric, Poisson, Normal, Exponential), conditional probability, key theorems (LLN, CLT, Bayes, Markov/Chebyshev)
-12. **Logic & Foundational Theorems** — propositional/predicate logic, Gödel's incompleteness theorems, computability & undecidability (halting problem, Rice's theorem), other landmarks (Cantor, Russell, P vs NP, Cook–Levin)
-13. **LeetCode Patterns** — arrays & hashing, two pointers & sliding window, binary search, linked lists, trees & traversals, graphs & dynamic programming (worked solutions with complexity analysis)
-14. **C++ for Python Developers** — compilation & build model, static typing & `auto`, values/references/pointers, memory/RAII/smart pointers, STL containers & algorithms, classes & the Rule of Five, templates, move semantics (with Python contrasts and per-topic exercises)
+1. **Sounds & Survival Kit** — the mora/beat system, the five vowels, vowel length as
+   meaning (*biiru* vs *biru*), pitch accent, devoiced vowels; the 20 phrases that cover a
+   whole trip; politeness registers and why *-masu* form is the one to learn
+2. **How a Sentence Is Built** — subject–object–verb order, dropping the subject, avoiding
+   *anata*; the ten core particles (*wa, ga, o, ni, de, no, to, mo, kara, made*), *wa* vs
+   *ga*, *ni* vs *de*; asking questions with *ka* and question words; ko-so-a-do
+   (*kore/sore/are*) and existence with *arimasu/imasu*
+3. **How Words Are Built** — the three vocabulary layers (native, Sino-Japanese, borrowed),
+   suffixes and prefixes that build word families, compounds and sequential voicing, *suru*
+   as a verb-maker; i-adjectives vs na-adjectives; the three verb groups
+4. **Tenses & Verb Forms That Matter** — two tenses only (there is no future), the four
+   polite endings, *-te imasu* for ongoing actions and resulting states; the te-form and its
+   uses (requests, permission, chaining, prohibition); *-tai* (want), potential (can),
+   *-mashou* / *-masen ka* (let's / shall we)
+5. **Numbers, Counting & Time** — numbers and the *man* (10,000) grouping, money and payment
+   phrases; counters and the universal *tsu* escape hatch; clock time, days, months and the
+   irregular days of the month
+6. **Tourist Situations, Line by Line** — eating out (the full scripted visit, dietary
+   needs, convenience-store questions), shopping and tax-free, trains/taxis/directions,
+   hotels, illness and emergencies
+7. **Quirks of the Language** — what Japanese leaves out (articles, plurals, agreement,
+   subjects, "you"); *aizuchi* listening noises, hedging and *chotto* as a refusal, *ne*/*yo*;
+   traps for English speakers (false-friend katakana, *hai* ≠ yes, *daijoubu desu*)
 
 ### Features
 
-- **Non-linear navigation** — collapsible sidebar, searchable topic filter, home grid, and prev/next paging.
+- **Non-linear navigation** — collapsible sidebar, searchable topic filter, home grid, and
+  prev/next paging.
 - **🃏 Flashcards** — click to reveal the answer.
-- **🧠 Test-yourself** — multiple-choice (instant right/wrong feedback + explanation) and open brain-teasers (reveal the worked answer).
+- **🧠 Test-yourself** — multiple-choice (instant right/wrong feedback + explanation) and
+  open questions (reveal the worked answer).
 
 ## Structure
 
@@ -68,7 +80,7 @@ src/
   components/             # Sidebar, Home, ContentView, Flashcards, Quiz
   content/
     index.js              # aggregates chapters + builds nav/paging index
-    ch1-data-structures.js … ch9-low-level.js   # all content lives here
+    ch1-sounds-and-survival.js … ch7-quirks.js   # all content lives here
 ```
 
 To edit or add content, open the relevant `content/ch*.js` file — each exports a

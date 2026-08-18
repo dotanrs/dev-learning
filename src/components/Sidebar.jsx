@@ -31,11 +31,11 @@ export default function Sidebar({ onNavigate }) {
   return (
     <>
       <div className="brand">
-        <span>⚡ Crash Course</span>
+        <span>🗾 Japanese Crash Course</span>
       </div>
       <div style={{ padding: '0 6px' }}>
         <small style={{ color: 'var(--text-dim)', fontSize: 12 }}>
-          Interview-prep knowledge base
+          Spoken Japanese for travellers
         </small>
       </div>
       <input
